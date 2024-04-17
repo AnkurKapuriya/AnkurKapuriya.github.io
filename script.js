@@ -10,6 +10,6 @@ function setValues(value,FromDate){
 
   document.querySelector('input[aria-label=" Person Number"]').value=strValue;
 
-  document.querySelector('input[aria-label="dd-mmm-yyyy"]').value=FromDate;
+  document.querySelector('input[aria-label="dd-mmm-yyyy"]').value=strValurFromDate;
   
 }
