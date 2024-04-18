@@ -12,9 +12,9 @@ function setValues(value,FromDate,ToDate){
   
   document.querySelector('input[aria-label=" Person Number"]').value=strValueNumber;
 
-  document.querySelector('input[aria-label="dd-mmm-yyyy"]')[0].value=strValurFromDate;
+  document.querySelectorAll('input[aria-label="dd-mmm-yyyy"]')[0].value=strValurFromDate;
 
-  document.querySelector('input[aria-label="dd-mmm-yyyy"]')[1].value=strValurToDate;
+  document.querySelectorAll('input[aria-label="dd-mmm-yyyy"]')[1].value=strValurToDate;
 
 
   
