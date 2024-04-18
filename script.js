@@ -22,3 +22,8 @@ function ClickCreateButton(){
   document.querySelector('div[title="Create"]').click();
 }
 
+function ClickArrow()
+{
+  document.querySelector('a[title="No results found."]').click();
+}
+
