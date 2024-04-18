@@ -145,7 +145,6 @@ const formattedMonth = month.substring(0, 3);
 
 const dayElements = document.querySelectorAll('.x12k[data-afr-adfday="cm"]');
 const monthElements = document.querySelectorAll('.x134');
-const yearElement = document.getElementById('_FOpt1:_FOr1:0:_FONSr2:0:_FOTr1:0:r1:0:AP1:AT1:r2:0:cd1::ys::content');
 
 dayElements.forEach(dayElement => {
     // Get the inner text of each day element
@@ -156,6 +155,7 @@ dayElements.forEach(dayElement => {
 
 monthElements.forEach(monthElement => {
     // Get the inner text of each month element
+	monthElement.innerText.substring(0, 3);
     if (monthElement.innerText === formattedMonth) {
         monthElement.click();
     }
