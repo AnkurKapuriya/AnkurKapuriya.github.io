@@ -27,3 +27,7 @@ function ClickArrow()
   document.querySelector('a[title="No results found."]').click();
 }
 
+function ClickSearch()
+{
+  document.querySelector('a.x1o4.xmv').click();
+}
