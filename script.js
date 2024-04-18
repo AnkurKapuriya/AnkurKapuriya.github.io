@@ -97,3 +97,39 @@ else{
 });
 }
 }
+
+
+function SelectDateFromCalender(date){
+	const targetDate = String(date);
+
+// Split the target date into day, month, and year
+const [day, month, year] = targetDate.split("-");
+
+// Remove leading zero if present for day
+const formattedDay = parseInt(day, 10).toString();
+
+// Get the month abbreviation
+const formattedMonth = month.substring(0, 3);
+
+const formattedYear = year.toString();
+
+const dayElements = document.querySelectorAll('.x12k[data-afr-adfday="cm"]');
+const monthElements = document.querySelectorAll('.x134');
+const yearElement = document.getElementById('_FOpt1:_FOr1:0:_FONSr2:0:_FOTr1:0:r1:0:AP1:AT1:r2:0:cd1::ys::content');
+
+dayElements.forEach(dayElement => {
+    // Get the inner text of each day element
+    if (dayElement.innerText === formattedDay) {
+        dayElement.click();
+    }
+});
+
+monthElements.forEach(monthElement => {
+    // Get the inner text of each month element
+    if (monthElement.innerText === formattedMonth) {
+        monthElement.click();
+    }
+});
+
+yearElement.value = formattedYear;
+}
