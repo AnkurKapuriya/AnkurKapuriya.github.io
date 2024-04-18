@@ -99,6 +99,36 @@ else{
 }
 
 
+function setYear(targetYear) {
+    // Find the year input field
+    let yearElement = document.querySelector('input.xxp');
+
+    if (!yearElement) {
+        console.error('Year input field not found.');
+        return;
+    }
+
+    let currentYear = parseInt(yearElement.value, 10);
+    let incrementButton = document.querySelector('a.x12y');
+    let decrementButton = document.querySelector('a.x12z');
+
+    if (targetYear > currentYear) {
+        // Increase the year
+        while (currentYear < targetYear) {
+            incrementButton.click();
+            currentYear++;
+             new Promise(resolve => setTimeout(resolve, 2000)); // Delay of 2 seconds
+        }
+    } else if (targetYear < currentYear) {
+        // Decrease the year
+        while (currentYear > targetYear) {
+            decrementButton.click();
+            currentYear--;
+             new Promise(resolve => setTimeout(resolve, 2000)); // Delay of 2 seconds
+        }
+    }
+}
+
 function SelectDateFromCalender(date){
 	const targetDate = String(date);
 
@@ -111,7 +141,7 @@ const formattedDay = parseInt(day, 10).toString();
 // Get the month abbreviation
 const formattedMonth = month.substring(0, 3);
 
-const formattedYear = year.toString();
+
 
 const dayElements = document.querySelectorAll('.x12k[data-afr-adfday="cm"]');
 const monthElements = document.querySelectorAll('.x134');
@@ -131,5 +161,5 @@ monthElements.forEach(monthElement => {
     }
 });
 
-yearElement.value = formattedYear;
+setYear(year);
 }
