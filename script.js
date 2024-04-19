@@ -99,48 +99,10 @@ else{
 }
 
 
-function setYear(targetYear) {
-    // Find the year input field
-    let yearElement = document.querySelector('input.xxp');
-
-    if (!yearElement) {
-        console.error('Year input field not found.');
-        return;
-    }
-
-    let currentYear = parseInt(yearElement.value, 10);
-    let incrementButton = document.querySelector('a.x12y');
-    let decrementButton = document.querySelector('a.x12z');
-
-    if (targetYear > currentYear) {
-        // Increase the year
-        while (currentYear < targetYear) {
-            incrementButton.click();
-            currentYear++;
-             new Promise(resolve => setTimeout(resolve, 2000)); // Delay of 2 seconds
-        }
-    } else if (targetYear < currentYear) {
-        // Decrease the year
-        while (currentYear > targetYear) {
-            decrementButton.click();
-            currentYear--;
-             new Promise(resolve => setTimeout(resolve, 2000)); // Delay of 2 seconds
-        }
-    }
-}
-
-function SelectDateFromCalender(date){
-	const targetDate = String(date);
-
-// Split the target date into day, month, and year
-const [day, month, year] = targetDate.split("-");
-
-// Remove leading zero if present for day
-const formattedDay = parseInt(day, 10).toString();
-
-// Get the month abbreviation
-var currMonth = parseInt(document.querySelector('[id*="cd1\\:\\:mSel\\:\\:content"]').value);
- var month_dict = {
+function set_date(val) {
+    var currYear = parseInt(document.querySelector('[id*="cd1::ys::content"]').value);
+    var currMonth = parseInt(document.querySelector('[id*="cd1\\:\\:mSel\\:\\:content"]').value);
+    var month_dict = {
         "Jan": 0,
         "Feb": 1,
         "Mar": 2,
@@ -154,14 +116,25 @@ var currMonth = parseInt(document.querySelector('[id*="cd1\\:\\:mSel\\:\\:conten
         "Nov": 10,
         "Dec": 11,
     }
+    var year = parseInt(val.split("-")[2]);
+    var month = month_dict[val.split("-")[1]];
+    var day = val.split("-")[0];
+    var diff = currYear - year;
 
+    //for year
+    while (diff != 0) {
+        if (diff > 0) {
+            document.querySelector('[id*="cd1::ys::decrement"]').click();
+            diff--;
+        }
+        else {
+            document.querySelector('[id*="cd1::ys::increment"]').click();
+            diff++;
+        }
+    }
 
-const dayElements = document.querySelectorAll('.x12k[data-afr-adfday="cm"]');
-var month = month_dict[val.split("-")[1]];
-
-setYear(year);
-
-	 diff = currMonth - month;
+    //for month
+    diff = currMonth - month;
     while (diff != 0) {
         if (diff > 0) {
             document.querySelector('[title="Previous Month"]').click();
@@ -173,14 +146,10 @@ setYear(year);
         }
     }
 
-dayElements.forEach(dayElement => {
-    // Get the inner text of each day element
-    if (dayElement.innerText === formattedDay) {
-        dayElement.click();
+    //for day
+    Array.from(document.getElementsByClassName('x12k')).forEach(cell => {
+    if(+cell.innerText == +day){
+        cell.click();
     }
-});
-
-
-
-
+})
 }
