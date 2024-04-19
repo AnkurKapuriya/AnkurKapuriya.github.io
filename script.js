@@ -168,3 +168,9 @@ function getLeaveValue(){
 	return document.querySelectorAll('.x2hi span[id$="socMatrixAttributeNumber6"]')[0].innerText
 }
 
+// get number of week days availbale
+function GetNumberOfColumns()
+{
+return document.getElementsByClassName('x1u p_AFReadOnly').length
+}
+
