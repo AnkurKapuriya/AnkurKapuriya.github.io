@@ -139,12 +139,39 @@ const [day, month, year] = targetDate.split("-");
 const formattedDay = parseInt(day, 10).toString();
 
 // Get the month abbreviation
-const formattedMonth = month.substring(0, 3);
-
+var currMonth = parseInt(document.querySelector('[id*="cd1\\:\\:mSel\\:\\:content"]').value);
+ var month_dict = {
+        "Jan": 0,
+        "Feb": 1,
+        "Mar": 2,
+        "Apr": 3,
+        "May": 4,
+        "Jun": 5,
+        "Jul": 6,
+        "Aug": 7,
+        "Sep": 8,
+        "Oct": 9,
+        "Nov": 10,
+        "Dec": 11,
+    }
 
 
 const dayElements = document.querySelectorAll('.x12k[data-afr-adfday="cm"]');
-const monthElements = document.querySelectorAll('.x134');
+var month = month_dict[val.split("-")[1]];
+
+setYear(year);
+
+	 diff = currMonth - month;
+    while (diff != 0) {
+        if (diff > 0) {
+            document.querySelector('[title="Previous Month"]').click();
+            diff--;
+        }
+        else {
+            document.querySelector('[title="Next Month"]').click();
+            diff++;
+        }
+    }
 
 dayElements.forEach(dayElement => {
     // Get the inner text of each day element
@@ -153,13 +180,7 @@ dayElements.forEach(dayElement => {
     }
 });
 
-monthElements.forEach(monthElement => {
-    // Get the inner text of each month element
-	monthElement.innerText.substring(0, 3);
-    if (monthElement.innerText === formattedMonth) {
-        monthElement.click();
-    }
-});
 
-setYear(year);
+
+
 }
