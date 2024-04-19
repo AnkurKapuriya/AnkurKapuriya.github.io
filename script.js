@@ -174,3 +174,6 @@ function GetNumberOfColumns()
 return document.getElementsByClassName('x1u p_AFReadOnly').length
 }
 
+function GetValueIndex(val){
+	return document.getElementsByClassName('x1u p_AFReadOnly')[val-1].innerText
+}
