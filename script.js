@@ -164,3 +164,7 @@ function isFirstTabEmpty() {
     }
 }
 
+function getLeaveValue(){
+	return document.querySelectorAll('.x2hi span[id$="socMatrixAttributeNumber6"]')[0].innerText
+}
+
