@@ -153,3 +153,14 @@ function set_date(val) {
     }
 })
 }
+
+function isFirstTabEmpty() {
+    var element = document.getElementsByClassName("x2hi")[0];
+    if (element) {
+        return element.innerText.trim() === '';
+    } else {
+        // Handle case when no element with class name "x2hi" is found
+        return false; // or true depending on your requirement
+    }
+}
+
