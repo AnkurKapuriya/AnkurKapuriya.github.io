@@ -187,7 +187,7 @@ var days_dict = {
         "Tue": 2,
         "Wed": 3,
         "Thu": 4,
-        "Fri": 4,
+        "Fri": 5,
         "Sat": 6,
         }
 
