@@ -193,3 +193,8 @@ var days_dict = {
 
 return days_dict[textContent.substring(0,3)];
 }
+
+//NumberOfRows
+function getNumberOfRows(){
+	return document.querySelectorAll('[_afrrk]')
+}
