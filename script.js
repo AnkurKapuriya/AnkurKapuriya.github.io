@@ -177,3 +177,19 @@ return document.getElementsByClassName('x1u p_AFReadOnly').length
 function GetValueIndex(val){
 	return document.getElementsByClassName('x1u p_AFReadOnly')[val-1].innerText
 }
+
+function getWeekDay(){
+const textContent = document.getElementsByClassName('x1hq')[6].innerText;
+
+var days_dict = {
+        "Sun": 0,
+        "Mon": 1,
+        "Tue": 2,
+        "Wed": 3,
+        "Thu": 4,
+        "Fri": 4,
+        "Sat": 6,
+        }
+
+return days_dict[textContent.substring(0,3)];
+}
