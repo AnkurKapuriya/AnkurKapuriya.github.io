@@ -198,3 +198,38 @@ return days_dict[textContent.substring(0,3)];
 function getNumberOfRows(){
 	return document.querySelectorAll('[_afrrk]')
 }
+
+
+function SetProject(project,index) {
+  setTimeout(function() {
+    document.querySelectorAll('[title="Search: Project"]')[index].click();
+
+    setTimeout(function() {
+      document.getElementsByClassName("x1o4 xmv")[0].click();
+
+      setTimeout(function() {
+        document.querySelector("[id*='_afrLovInternalQueryId\\:\\:mode']").click();
+
+        setTimeout(function() {
+          document.querySelector('[id*="socMatrixAttributeNumber2\\:\\:_afrLovInternalQueryId\\:operator0\\:\\:pop"] > li:nth-child(6)').click();
+
+          setTimeout(function() {
+            document.querySelector('input[aria-label=" Display Value"]').value = project;
+
+            setTimeout(function() {
+              document.getElementsByClassName("xhv p_AFTextOnly")[1].click();
+
+              setTimeout(function() {
+                document.querySelectorAll('[id*="socMatrixAttributeNumber2_afrLovInternalTableId::db"] > table > tbody > tr')[0].click();
+
+                setTimeout(function() {
+                  document.getElementsByClassName("xux p_AFTextOnly")[0].click();
+                }, 2000); // 2-second delay
+              }, 2000); // 2-second delay
+            }, 2000); // 2-second delay
+          }, 2000); // 2-second delay
+        }, 2000); // 2-second delay
+      }, 2000); // 2-second delay
+    }, 2000); // 2-second delay
+  }, 2000); // 2-second delay
+}
