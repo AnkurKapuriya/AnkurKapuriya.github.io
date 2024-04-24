@@ -199,7 +199,7 @@ function getNumberOfRows(){
 	return document.querySelectorAll('[_afrrk]')
 }
 
-
+//index= row number starting from 0
 function SetProject(project,index) {
   setTimeout(function() {
     document.querySelectorAll('[title="Search: Project"]')[index].click();
