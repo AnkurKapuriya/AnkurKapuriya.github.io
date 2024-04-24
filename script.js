@@ -220,7 +220,7 @@ function SetProject(project,index) {
               document.getElementsByClassName("xhv p_AFTextOnly")[1].click();
 
               setTimeout(function() {
-                document.querySelectorAll('[id*="socMatrixAttributeNumber2_afrLovInternalTableId::db"] > table > tbody > tr')[0].click();
+		document.querySelector("[id*='_afrLovInternalTableId\\:\\:db'] > table > tbody > tr > td:nth-child(2) > div > table > tbody > tr > td").click();
 
                 setTimeout(function() {
                   document.getElementsByClassName("xux p_AFTextOnly")[0].click();
