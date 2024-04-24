@@ -211,7 +211,7 @@ function SetProject(project,index) {
         document.querySelector("[id*='_afrLovInternalQueryId\\:\\:mode']").click();
 
         setTimeout(function() {
-          document.querySelector('[id*="socMatrixAttributeNumber2\\:\\:_afrLovInternalQueryId\\:operator0\\:\\:pop"] > li:nth-child(6)').click();
+          document.querySelector('[id*="_afrLovInternalQueryId\\:operator0\\:\\:pop"] > li:nth-child(6)').click();
 
           setTimeout(function() {
             document.querySelector('input[aria-label=" Display Value"]').value = project;
