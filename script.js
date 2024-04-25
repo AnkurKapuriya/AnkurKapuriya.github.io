@@ -200,36 +200,105 @@ function getNumberOfRows(){
 }
 
 //index= row number starting from 0
-function SetProject(project,index) {
-  setTimeout(function() {
-    document.querySelectorAll('[title="Search: Project"]')[index].click();
-
-    setTimeout(function() {
-      document.getElementsByClassName("x1o4 xmv")[0].click();
-
-      setTimeout(function() {
-        document.querySelector("[id*='_afrLovInternalQueryId\\:\\:mode']").click();
-
-        setTimeout(function() {
-          document.querySelector('[id*="_afrLovInternalQueryId\\:operator0\\:\\:pop"] > li:nth-child(6)').click();
-
-          setTimeout(function() {
+function SetProject(index, project) {
+    return new Promise((resolve, reject) => {
+        waitForElement(`[id*='\\:socMatrixAttributeNumber2\\:\\:lovIconId']`).then(() => {
+            document.querySelectorAll(`[id*='\\:socMatrixAttributeNumber2\\:\\:lovIconId']`)[index].click();
+            return waitForElement("[id*='\\:\\:dropdownPopup\\:\\:popupsearch']");
+        }).then(() => {
+            document.querySelector("[id*='\\:\\:dropdownPopup\\:\\:popupsearch']").click();
+            return waitForElement("[id*='_afrLovInternalQueryId\\:\\:mode']");
+        }).then(() => {
+            document.querySelector("[id*='_afrLovInternalQueryId\\:\\:mode']").click();
+            return waitForElement('[id*="_afrLovInternalQueryId\\:operator0\\:\\:pop"] > li:nth-child(6)');
+        }).then(() => {
+            document.querySelector('[id*="_afrLovInternalQueryId\\:operator0\\:\\:pop"] > li:nth-child(6)').click();
             document.querySelector('input[aria-label=" Display Value"]').value = project;
+            document.querySelector("[id*='_afrLovInternalQueryId\\:\\:search']").click(); // Click search
+            return waitForElement('[id*="socMatrixAttributeNumber2_afrLovInternalTableId::db"] > table > tbody > tr');
+        }).then(() => {
+            document.querySelectorAll('[id*="socMatrixAttributeNumber2_afrLovInternalTableId::db"] > table > tbody > tr')[0].click();
+            document.querySelector("[id*='\\:lovDialogId\\:\\:ok']").click();
+            resolve(); // Resolve the Promise when all operations are completed
+        }).catch((error) => {
+            reject(error); // Reject the Promise if there's an error
+        });
+    });
+}
 
-            setTimeout(function() {
-              document.getElementsByClassName("xhv p_AFTextOnly")[1].click();
+function selectTask(index, task) {
+    waitForElement('[title="Search: Task"]').then(() => {
+        document.querySelectorAll('[title="Search: Task"]')[index].click();
+        return waitForElement("[id*='\\:\\:dropdownPopup\\:\\:popupsearch']");
+    }).then(() => {
+        document.querySelector("[id*='\\:\\:dropdownPopup\\:\\:popupsearch']").click(); // Click popup search
+        return waitForElement("[id*='_afrLovInternalQueryId\\:\\:mode']");
+    }).then(() => {
+        document.querySelector("[id*='_afrLovInternalQueryId\\:\\:mode']").click();
+        return waitForElement('[id*="_afrLovInternalQueryId\\:operator0\\:\\:pop"] > li:nth-child(6)');
+    }).then(() => {
+        document.querySelector('[id*="_afrLovInternalQueryId\\:operator0\\:\\:pop"] > li:nth-child(6)').click();
+        document.querySelector('input[aria-label=" Display Value"]').value = task;
+        document.querySelector("[id*='_afrLovInternalQueryId\\:\\:search']").click(); // Click search
+        return waitForElement("[id*='_afrLovInternalTableId\\:\\:db'] > table > tbody > tr > td:nth-child(2) > div > table > tbody > tr > td");
+    }).then(() => {
+        document.querySelector("[id*='_afrLovInternalTableId\\:\\:db'] > table > tbody > tr > td:nth-child(2) > div > table > tbody > tr > td").click();
+        document.querySelector("[id*='\\:lovDialogId\\:\\:ok']").click();
+    }).catch((error) => {
+        console.error("Error:", error);
+    });
 
-              setTimeout(function() {
-		document.querySelector("[id*='_afrLovInternalTableId\\:\\:db'] > table > tbody > tr > td:nth-child(2) > div > table > tbody > tr > td").click();
-
-                setTimeout(function() {
-                  document.getElementsByClassName("xux p_AFTextOnly")[0].click();
-                }, 2000); // 2-second delay
-              }, 2000); // 2-second delay
-            }, 2000); // 2-second delay
-          }, 2000); // 2-second delay
-        }, 2000); // 2-second delay
-      }, 2000); // 2-second delay
+    // Adding a timeout for the last action
+    setTimeout(() => {
+        console.log("Timeout for last action reached.");
     }, 2000); // 2-second delay
-  }, 2000); // 2-second delay
+}
+
+var expenditureMap = {
+  "Annual Leave": "0",
+  "Bank Holidays": "1",
+  "Contracted Hours - Employee": "2",
+  "Employee Volunteering and Fundraising": "3",
+  "Extra Hours - Employee": "4",
+  "Leavers/Joiners": "5",
+  "Mace Day": "6",
+  "Other Leave - Christmas Close Down": "7",
+  "Other Leave - Compassionate": "8",
+  "Other Leave - Jury Service": "9",
+  "Other Leave - Medical Appointments": "10",
+  "Other Leave - Paid": "11",
+  "Other Leave - Study Leave": "12",
+  "Other Leave - Unpaid": "13",
+  "Other Leave - Voluntary Reserve Forces Leave": "14",
+  "Parental Leave": "15",
+  "Sickness (Long Term) (GIP)": "16",
+  "Sickness (Short Term)": "17",
+  "Training": "18"
+}
+
+
+function setExp(index, type) {
+    waitForElement('[title="Search: Expenditure Type"]').then(() => {
+        document.querySelectorAll('[title="Search: Expenditure Type"]')[index].click();
+        return waitForElement("[id*='\\:\\:dropdownPopup\\:\\:popupsearch']");
+    }).then(() => {
+        document.querySelector("[id*='\\:\\:dropdownPopup\\:\\:popupsearch']").click();
+        return waitForElement("[id*='_afrLovInternalQueryId\\:\\:search']");
+    }).then(() => {
+        document.querySelector("[id*='_afrLovInternalQueryId\\:\\:search']").click();
+        return waitForElement("[id*='socMatrixAttributeChar1_afrLovInternalTableId\\:\\:db'] tr");
+    }).then(() => {
+        const rows = document.querySelectorAll("[id*='socMatrixAttributeChar1_afrLovInternalTableId\\:\\:db'] tr");
+        for (const row of rows) {
+            if (row.getAttribute('_afrrk') === expenditureMap[type]) {
+                row.click();
+                break;
+            }
+        }
+        return waitForElement("[id*='\\:lovDialogId\\:\\:ok']");
+    }).then(() => {
+        document.querySelector("[id*='\\:lovDialogId\\:\\:ok']").click();
+    }).catch((error) => {
+        console.error("Error:", error);
+    });
 }
