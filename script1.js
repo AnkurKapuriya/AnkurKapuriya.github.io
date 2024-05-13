@@ -13,6 +13,10 @@ function PlaceBid() {
         }
     }, 100); // Check every 0.1 second
 }
+// get timeLeft
+function TimeLeft(){
+    return parseInt(document.getElementById("time-left").innerText)
+}
 
 //return success message
 function SuccessMessage() {
