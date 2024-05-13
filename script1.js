@@ -13,3 +13,11 @@ function PlaceBid() {
         }
     }, 100); // Check every 0.1 second
 }
+function SuccessMessage{
+var success=document.getElementById("success-title").innerText;
+
+var time=document.getElementById("processing-time").innerText
+
+var price=document.getElementById("accuracy").innerText
+    return ${success}+${time}+" of "+${price}
+}
