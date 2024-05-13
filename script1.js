@@ -14,5 +14,3 @@ function PlaceBid() {
     }, 100); // Check every 0.1 second
 }
 
-// Call the function to start waiting
-PlaceBid();
